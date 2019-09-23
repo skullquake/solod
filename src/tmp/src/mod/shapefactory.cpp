@@ -14,6 +14,57 @@ ShapeFactory::~ShapeFactory(){
 		}
 	}
 }
+bool ShapeFactory::load(std::string a){
+	bool ret=false;
+	if(a.compare("")){
+		if(mf.count(a)){
+			std::cout<<"Already Loaded "<<a<<std::endl;
+			ret=true;
+		}else{
+			std::string sopath=a;
+			void *handle;
+			if((handle=dlopen(sopath.c_str(),RTLD_LAZY))==NULL){
+				std::cerr<<"Failed to load "<<sopath<<std::endl;
+			}else{
+				std::cout<<"Loaded "<<a<<std::endl;
+				Shape* (*mkr)();
+				mkr=(Shape* (*)())dlsym(handle,"maker");
+				if(mkr==NULL){
+					std::cerr<<"Failed to get function"<<std::endl;
+					dlclose(handle);
+				}else{
+					mf[a]=mkr;
+					ret=true;
+				}
+			}
+		}
+	}else{
+	}
+	return ret;
+
+
+}
+bool ShapeFactory::unload(std::string a){
+	bool ret=false;
+	if(a.compare("")){
+		if(mf.count(a)){
+			std::cout<<"Unloading "<<a<<"...";
+			try{
+				mf.erase(a);
+				ret=true;
+				std::cout<<"done"<<std::endl;
+			}catch(std::exception e){
+				std::cerr<<e.what()<<std::endl;
+			}
+		}else{
+			std::cerr<<"Key "<<a<<" not found"<<std::endl;
+		}
+	}else{
+		std::cerr<<"Key empty"<<std::endl;
+	}
+	return ret;
+
+}
 bool ShapeFactory::remove(std::string a){
 	bool ret=false;
 	if(a.compare("")){

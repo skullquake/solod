@@ -6,6 +6,8 @@ class ShapeFactory{
 	public:
 		ShapeFactory();
 		~ShapeFactory();
+		bool load(std::string);
+		bool unload(std::string);
 		Shape* create(std::string);
 		bool remove(std::string);
 	private:

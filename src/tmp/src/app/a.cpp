@@ -8,7 +8,19 @@
 int main(int argc,char** argv){
 	std::string libnam;
 	ShapeFactory sf;
-		/*
+	sf.load((std::string("./lib/libshape")+std::string(SOEXT)).c_str());
+	sf.load((std::string("./lib/libtriangle")+std::string(SOEXT)).c_str());
+	sf.load((std::string("./lib/libsquare")+std::string(SOEXT)).c_str());
+	sf.load((std::string("./lib/libshape")+std::string(SOEXT)).c_str());
+	sf.load((std::string("./lib/libtriangle")+std::string(SOEXT)).c_str());
+	sf.load((std::string("./lib/libsquare")+std::string(SOEXT)).c_str());
+	sf.unload((std::string("./lib/libshape")+std::string(SOEXT)).c_str());
+	sf.unload((std::string("./lib/libtriangle")+std::string(SOEXT)).c_str());
+	sf.unload((std::string("./lib/libsquare")+std::string(SOEXT)).c_str());
+	sf.load((std::string("./lib/libshape")+std::string(SOEXT)).c_str());
+	sf.load((std::string("./lib/libtriangle")+std::string(SOEXT)).c_str());
+	sf.load((std::string("./lib/libsquare")+std::string(SOEXT)).c_str());
+	/*
 	{
 		libnam=((std::string("./lib/libshape")+std::string(SOEXT)).c_str());
 		Shape* s0=sf.create(libnam);
@@ -17,7 +29,6 @@ int main(int argc,char** argv){
 		Shape* s2=sf.create(libnam);
 		Shape* s3=sf.create(libnam);
 	}
-		*/
 	{
 		std::cout<<"----------------------------------------"<<std::endl;
 		libnam=((std::string("./lib/libtriangle")+std::string(SOEXT)).c_str());
@@ -36,6 +47,7 @@ int main(int argc,char** argv){
 		Shape* s2=sf.create(libnam);
 		Shape* s3=sf.create(libnam);
 	}
+	*/
 
 	return 0;
 }

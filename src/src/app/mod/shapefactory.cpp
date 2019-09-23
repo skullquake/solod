@@ -6,7 +6,7 @@ ShapeFactory::ShapeFactory(){
 ShapeFactory::~ShapeFactory(){
 	for(auto a:mf){
 		try{
-			std::cout<<"Closing "<<a.first<<"...";
+			std::cout<<"Unloading "<<a.first<<"...";
 			dlclose(a.second());
 			std::cout<<"done"<<std::endl;
 		}catch(std::exception e){

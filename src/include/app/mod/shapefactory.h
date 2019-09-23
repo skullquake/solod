@@ -1,6 +1,6 @@
 #ifndef APP_SHAPEFACTORY_H
 #define APP_SHAPEFACTORY_H
-#include"shape.h"
+#include"shape/shape.h"
 #include<map>
 class ShapeFactory{
 	public:

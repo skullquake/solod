@@ -30,7 +30,14 @@ LIBSRC:=$(shell find $(LIBSRCDIR) -name "*.cpp" -o -name "*.c")
 LIBOBJS=$(addprefix $(LIBBUILDDIR)/,$(patsubst %.c,%.o ,$(patsubst %.cpp,%.o,$(LIBSRC))))
 LIBCFLAGS=\
 	-I./include/lib
+ifneq (,$(findstring mingw,$(OS)))
 LIBLDFLAGS=\
+
+else
+LIBLDFLAGS=\
+		-rdynamic 
+endif
+
 #-------------------------------------------------------------------------------
 #APPLICATION
 #-------------------------------------------------------------------------------
@@ -45,7 +52,8 @@ APPRPATH=./lib
 APPCFLAGS=\
 	-I./include/app\
 	-I./include/lib\
-	-L$(LIBDIR)
+	-L$(LIBDIR)\
+	-DSOEXT=\"$(SOEXT)\"
 APPLDFLAGS=\
 	   -ldl
 #-------------------------------------------------------------------------------
@@ -86,8 +94,8 @@ $(APPBUILDDIR)/%.o: %.c
 $(LIBLN):$(LIBBIN)
 	$(LN)\
 		-sfn \
-		$(shell pwd)/$(LIBBIN) \
-		$(shell pwd)/$(LIBLN)
+		"$(shell pwd)/$(LIBBIN)" \
+		"$(shell pwd)/$(LIBLN)"
 $(LIBBIN):$(LIBOBJS)
 	@printf "generating $@...\n"
 	@mkdir -p $(@D)
@@ -96,7 +104,6 @@ $(LIBBIN):$(LIBOBJS)
 		$(LIBOBJS)\
 		$(LIBLDFLAGS)\
 		-shared \
-		-rdynamic \
 		-Wl,-soname,lib$(LIBNAM)$(SOEXT) \
 		-o $(LIBBIN)
 $(LIBBUILDDIR)/%.o: %.cpp
@@ -106,7 +113,6 @@ $(LIBBUILDDIR)/%.o: %.cpp
 		$(LIBCFLAGS)\
 		-c $<\
 		-fPIC \
-		-rdynamic \
 		$(LIBLDFLAGS)\
 		-o $@
 $(LIBBUILDDIR)/%.o: %.c

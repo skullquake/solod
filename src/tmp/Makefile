@@ -71,6 +71,7 @@ $(APPBUILDDIR)/%.o: %.c
 #-------------------------------------------------------------------------------
 .phony:\
 	libs\
+	cleanlibs\
 	run\
 	clean\
 	lsvar\
@@ -81,6 +82,11 @@ libs:
 	do\
 		$(MAKE) --directory=$$d;\
 	done
+cleanlibs:
+	for d in $(LIBDIRS);\
+	do\
+		$(MAKE) clean --directory=$$d;\
+	done
 nm:
 	@printf "symbols:\n"
 	nm -CD ./lib/liba.so
@@ -89,6 +95,7 @@ objdump:
 	objdump -t ./lib/liba.so
 clean:
 	@rm -r ./bin
+	make cleanlibs
 run: $(APPBIN)
 	$(APPBIN)
 lsvar:

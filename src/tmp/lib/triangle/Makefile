@@ -20,7 +20,7 @@ endif
 #-------------------------------------------------------------------------------
 LIBBUILDDIR=./bin/lib
 LIBDIR=lib
-LIBNAM=$(shell basename $(shell pwd))
+LIBNAM=$(shell basename "$(shell pwd)")
 LIBPFX=lib
 LIBVER=1
 LIBBIN=$(LIBDIR)/$(LIBPFX)$(LIBNAM)$(SOEXT).$(LIBVER)
@@ -30,10 +30,11 @@ LIBSRC:=$(shell find $(LIBSRCDIR) -name "*.cpp" -o -name "*.c")
 LIBOBJS=$(addprefix $(LIBBUILDDIR)/,$(patsubst %.c,%.o ,$(patsubst %.cpp,%.o,$(LIBSRC))))
 LIBCFLAGS=\
 	-I./include\
-	-I../shape/include
+	-I../shape/include\
+	-L../
 ifneq (,$(findstring mingw,$(OS)))
 LIBLDFLAGS=\
-
+	-lshape
 else
 LIBLDFLAGS=\
 		-rdynamic 

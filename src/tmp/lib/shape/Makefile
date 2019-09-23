@@ -20,7 +20,7 @@ endif
 #-------------------------------------------------------------------------------
 LIBBUILDDIR=./bin/lib
 LIBDIR=lib
-LIBNAM=$(shell basename $(shell pwd))
+LIBNAM=$(shell basename "$(shell pwd)")
 LIBPFX=lib
 LIBVER=1
 LIBBIN=$(LIBDIR)/$(LIBPFX)$(LIBNAM)$(SOEXT).$(LIBVER)

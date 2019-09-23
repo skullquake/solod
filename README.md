@@ -1,0 +1,2 @@
+# solod
+shared object loading

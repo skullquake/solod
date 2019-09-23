@@ -7,4 +7,7 @@ class Square:public Shape{
 		~Square();
 	private:
 };
+extern "C" {
+	Shape* maker();
+}
 #endif

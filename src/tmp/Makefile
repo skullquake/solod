@@ -35,7 +35,8 @@ APPCFLAGS=\
 	-L$(LIBDIR)\
 	-DSOEXT=\"$(SOEXT)\"
 APPLDFLAGS=\
-	   -ldl
+	   -ldl\
+	   -lshape
 #-------------------------------------------------------------------------------
 #RULES
 #-------------------------------------------------------------------------------
@@ -49,7 +50,8 @@ $(APPBIN):$(APPOBJS)
 		$(APPCFLAGS)\
 		$(APPOBJS)\
 		-o $(APPBIN)\
-		$(APPLDFLAGS)
+		$(APPLDFLAGS)\
+		-Wl,-rpath=$(APPRPATH)
 $(APPBUILDDIR)/%.o: %.cpp
 	@printf "generating $@...\n"
 	@mkdir -p $(@D)

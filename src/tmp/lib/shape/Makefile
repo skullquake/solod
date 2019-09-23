@@ -30,11 +30,13 @@ LIBSRC:=$(shell find $(LIBSRCDIR) -name "*.cpp" -o -name "*.c")
 LIBOBJS=$(addprefix $(LIBBUILDDIR)/,$(patsubst %.c,%.o ,$(patsubst %.cpp,%.o,$(LIBSRC))))
 LIBCFLAGS=\
 	-I./include
-ifneq (,$(findstring mingw,$(OS)))
 LIBLDFLAGS=\
 
+ifneq (,$(findstring mingw,$(OS)))
+LIBLDFLAGS+=\
+
 else
-LIBLDFLAGS=\
+LIBLDFLAGS+=\
 		-rdynamic 
 endif
 #-------------------------------------------------------------------------------

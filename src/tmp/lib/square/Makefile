@@ -32,12 +32,14 @@ LIBCFLAGS=\
 	-I./include\
 	-I../shape/include\
 	-L../
-ifneq (,$(findstring mingw,$(OS)))
 LIBLDFLAGS=\
 	-lshape
+ifneq (,$(findstring mingw,$(OS)))
+LIBLDFLAGS+=\
+
 else
-LIBLDFLAGS=\
-		-rdynamic 
+LIBLDFLAGS+=\
+	-rdynamic 
 endif
 #-------------------------------------------------------------------------------
 #RULES

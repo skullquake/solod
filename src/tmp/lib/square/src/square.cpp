@@ -6,10 +6,8 @@ Square::Square(){
 Square::~Square(){
 	std::cout<<"~Square()"<<std::endl;
 }
-/*
 extern "C" {
 	Shape* maker(){
 		return new Square;
 	}
 }
-*/

@@ -10,13 +10,22 @@ int main(int argc,char** argv){
 	ShapeFactory sf;
 	sf.load((std::string("./lib/libtriangle")+std::string(SOEXT)).c_str());
 	sf.load((std::string("./lib/libsquare")+std::string(SOEXT)).c_str());
+	sf.load((std::string("./lib/libparallelogram")+std::string(SOEXT)).c_str());
+	sf.load((std::string("./lib/librhombus")+std::string(SOEXT)).c_str());
+	sf.load((std::string("./lib/libcircle")+std::string(SOEXT)).c_str());
+	sf.load((std::string("./lib/liboval")+std::string(SOEXT)).c_str());
+	sf.unload((std::string("./lib/libtriangle")+std::string(SOEXT)).c_str());
+	sf.unload((std::string("./lib/libsquare")+std::string(SOEXT)).c_str());
+	sf.unload((std::string("./lib/libparallelogram")+std::string(SOEXT)).c_str());
+	sf.unload((std::string("./lib/librhombus")+std::string(SOEXT)).c_str());
+	sf.unload((std::string("./lib/libcircle")+std::string(SOEXT)).c_str());
+	sf.unload((std::string("./lib/liboval")+std::string(SOEXT)).c_str());
 	sf.load((std::string("./lib/libtriangle")+std::string(SOEXT)).c_str());
 	sf.load((std::string("./lib/libsquare")+std::string(SOEXT)).c_str());
 	sf.load((std::string("./lib/libparallelogram")+std::string(SOEXT)).c_str());
-	sf.unload((std::string("./lib/libtriangle")+std::string(SOEXT)).c_str());
-	sf.unload((std::string("./lib/libsquare")+std::string(SOEXT)).c_str());
-	sf.load((std::string("./lib/libtriangle")+std::string(SOEXT)).c_str());
-	sf.load((std::string("./lib/libsquare")+std::string(SOEXT)).c_str());
+	sf.load((std::string("./lib/librhombus")+std::string(SOEXT)).c_str());
+	sf.load((std::string("./lib/libcircle")+std::string(SOEXT)).c_str());
+	sf.load((std::string("./lib/liboval")+std::string(SOEXT)).c_str());
 	{
 		std::cout<<"----------------------------------------"<<std::endl;
 		libnam=((std::string("./lib/libtriangle")+std::string(SOEXT)).c_str());

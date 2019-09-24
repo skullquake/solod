@@ -27,16 +27,18 @@ LIBBIN=$(LIBDIR)/$(LIBPFX)$(LIBNAM)$(SOEXT).$(LIBVER)
 LIBLN=../../$(LIBDIR)/$(LIBPFX)$(LIBNAM)$(SOEXT)
 LIBSRCDIR=src
 LIBSRC:=$(shell find $(LIBSRCDIR) -name "*.cpp" -o -name "*.c")
+LIBSRC+=\
+	../../src/shape/shape.cpp
 LIBOBJS=$(addprefix $(LIBBUILDDIR)/,$(patsubst %.c,%.o ,$(patsubst %.cpp,%.o,$(LIBSRC))))
 LIBCFLAGS=\
 	-I./include\
-	-I../shape/include\
+	-I../../include/shape\
 	-L../
 LIBLDFLAGS=\
-	-lshape
+
 ifneq (,$(findstring mingw,$(OS)))
 LIBLDFLAGS+=\
-
+	-Wl,-unresolved-symbols=ignore-in-shared-libs
 else
 LIBLDFLAGS+=\
 		-rdynamic 

@@ -6,8 +6,3 @@ Shape::Shape(){
 Shape::~Shape(){
 	std::cout<<"~Shape()"<<std::endl;
 }
-extern "C" {
-	Shape* maker(){
-		return new Shape;
-	}
-}

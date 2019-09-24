@@ -31,12 +31,11 @@ APPOBJS=$(addprefix $(APPBUILDDIR)/,$(patsubst %.c,%.o ,$(patsubst %.cpp,%.o,$(A
 APPRPATH=./lib
 APPCFLAGS=\
 	-I./include\
-	-I./lib/shape/include\
+	-I./include/shape\
 	-L$(LIBDIR)\
 	-DSOEXT=\"$(SOEXT)\"
 APPLDFLAGS=\
-	   -ldl\
-	   -lshape
+	-ldl
 #-------------------------------------------------------------------------------
 #RULES
 #-------------------------------------------------------------------------------
